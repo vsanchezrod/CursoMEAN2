@@ -7,19 +7,20 @@ var express = expressLib();
 
 //cargar rutas
 
+var user_routes = require('./routes/userRoute')
+
 //configurar bodyParser
 
 express.use(bodyParser.urlencoded({extended:false}));
-express.use(bodyParser.json());
+express.use(bodyParser.json()); //Convertir los datos a json 
 
 //configurar cabeceras http
 
 //rutas base
 
-express.get('/estado', function (req, res){
-	res.status(200).send({message:'Servicio activo.'})
-});
+express.use('/api', user_routes);
+
 
 //exportamos el modulo (ahora podemos usar express fuera con un require)
 
-module.exports = express;
+module.exports = express; //Exportamos el modulo y podemos utilizar express en otros archivos que tenga express
